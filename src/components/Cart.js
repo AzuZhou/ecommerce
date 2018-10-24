@@ -8,14 +8,11 @@ class Cart extends React.Component {
 
     return (
       <div className="cart">
-        <h1>Cart</h1>
-        <ul>
-          {cart.map(product => (
-            <li key={product._id}>
-              <Product product={product} type="cart" key={product._id} />
-            </li>
-          ))}
-        </ul>
+        {cart.map((product, i) => (
+          <li className="cart-product" key={i}>
+            <Product product={product} index={i} type="cart" key={i} />
+          </li>
+        ))}
       </div>
     )
   }

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-
 import Header from './Header'
 import Catalog from './Catalog'
 import Cart from './Cart'
 import { fetchProducts } from '../actions/actionCreators'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 class Main extends React.Component {
   componentDidMount() {
@@ -18,14 +18,16 @@ class Main extends React.Component {
     return (
       <BrowserRouter>
         <div className="main">
-          <Header />
           {loading ? (
-            <div>Loading...</div>
+            <CircularProgress className="loader" color="secondary" />
           ) : (
-            <Switch>
-              <Route path="/cart" component={Cart} />
-              <Route path="/" component={Catalog} />
-            </Switch>
+            <Fragment>
+              <Header />
+              <Switch>
+                <Route path="/cart" component={Cart} />
+                <Route path="/" component={Catalog} />
+              </Switch>
+            </Fragment>
           )}
         </div>
       </BrowserRouter>

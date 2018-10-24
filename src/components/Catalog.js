@@ -1,36 +1,28 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Product from './Product'
+import Grid from '@material-ui/core/Grid'
 
 class Catalog extends React.Component {
   render() {
     const { products } = this.props
-    let newList = 0
+
     return (
       <div className="catalog">
-        <h1>Catalog</h1>
-        <ul>
-          {products.map((product, i) => {
-            if (i % 3 === 0) {
-              newList = products.slice(newList + 3, newList + 5)
-              return (
-                <ul id={`row${i}`}>
-                  <li key={product._id}>
-                    <Product product={product} type="catalog" key={product._id} />
-                  </li>
-                  {newList.map(product => {
-                    return (
-                      <li key={product._id}>
-                        <Product product={product} type="catalog" key={product._id} />
-                      </li>
-                    )
-                  })}
-                </ul>
-              )
-            }
-            return null
-          })}
-        </ul>
+        <Grid
+          className="catalog-container"
+          container
+          spacing={40}
+          direction="row"
+          justify="center"
+          alignItems="center"
+        >
+          {products.map((product, i) => (
+            <Grid className="catalog-product" item xs={4} key={i}>
+              <Product product={product} type="catalog" key={i} />
+            </Grid>
+          ))}
+        </Grid>
       </div>
     )
   }

@@ -11,16 +11,15 @@ function cart(state = [], action) {
           picture: action.picture,
           name: action.name,
           company: action.company,
-          description: action.description
+          description: action.description,
+          index: action.index
         }
       ]
     case DELETE_PRODUCT:
-      return state.filter(id => id._id !== action._id)
+      return [...state.slice(0, action.index), ...state.slice(action.index + 1)]
     default:
       return state
   }
 }
 
 export default cart
-
-//[...state.slice(0, action.i), ...state.slice(action.i + 1)]

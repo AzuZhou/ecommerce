@@ -10,7 +10,8 @@ export function fetchProducts() {
   }
 }
 
-export function addToCart(_id, price, picture, name, company, description) {
+export function addToCart(_id, price, picture, name, company, description, index) {
+  console.log(index)
   return {
     type: ADD_TO_CART,
     _id,
@@ -18,13 +19,14 @@ export function addToCart(_id, price, picture, name, company, description) {
     picture,
     name,
     company,
-    description
+    description,
+    index
   }
 }
 
-export function deleteProduct(_id) {
+export function deleteProduct(index) {
   return {
     type: DELETE_PRODUCT,
-    _id
+    index
   }
 }

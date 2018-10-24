@@ -1,11 +1,14 @@
 import React from 'react'
 import { addToCart, deleteProduct } from '../actions/actionCreators'
 import { connect } from 'react-redux'
+import Button from '@material-ui/core/Button'
 
 class Product extends React.Component {
   render() {
     const addBtn = (
-      <button
+      <Button
+        variant="contained"
+        color="secondary"
         onClick={() =>
           this.props.addProduct(
             this.props.product._id,
@@ -13,36 +16,62 @@ class Product extends React.Component {
             this.props.product.picture,
             this.props.product.name,
             this.props.product.company,
-            this.props.product.description
+            this.props.product.description,
+            this.props.index
           )
         }
       >
-        Add To Cart
-      </button>
+        <img
+          id="add-cart-logo"
+          src={'/assets/add_shopping_cart.png'}
+          alt="cart"
+          height="20px"
+          width="20px"
+        />
+      </Button>
     )
     const delBtn = (
-      <button onClick={() => this.props.deleteProduct(this.props.product._id)}>Delete</button>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={() => this.props.deleteProduct(this.props.index)}
+      >
+        <img id="delete-logo" src={'/assets/delete.png'} alt="delete" height="20px" width="20px" />
+      </Button>
     )
 
     return (
-      <div id={this.props.key} className="product">
-        <img src={this.props.product.picture} alt="pic" height="50px" width="50px" />
-        <div>
-          <h3>{this.props.product.company}</h3>
-          <h3>{this.props.product.name}</h3>
-          <h3>{this.props.product.price}</h3>
+      <div className="product" id={`product-${this.props.type}`}>
+        <img
+          className="photo"
+          src={this.props.product.picture}
+          alt="pic"
+          height="320px"
+          width="320px"
+        />
+        <div className="column">
+          <div className="product-details">
+            <h4>{this.props.product.name}</h4>
+            <h4>{this.props.product.price}</h4>
+          </div>
+          <p>{this.props.product.description}</p>
+          <div className="product-details">
+            <h4>
+              By&#160;
+              {this.props.product.company}
+            </h4>
+            {this.props.type === 'catalog' ? addBtn : delBtn}
+          </div>
         </div>
-        <p>{this.props.product.description}</p>
-        {this.props.type === 'catalog' ? addBtn : delBtn}
       </div>
     )
   }
 }
 
 const mapDispatch = dispatch => ({
-  addProduct: (_id, price, picture, name, company, description) =>
-    dispatch(addToCart(_id, price, picture, name, company, description)),
-  deleteProduct: _id => dispatch(deleteProduct(_id))
+  addProduct: (_id, price, picture, name, company, description, index) =>
+    dispatch(addToCart(_id, price, picture, name, company, description, index)),
+  deleteProduct: index => dispatch(deleteProduct(index))
 })
 
 export default connect(
