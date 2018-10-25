@@ -15,7 +15,7 @@ class Cart extends React.Component {
             </li>
           ))
         ) : (
-          <h1>...Oops you don't have items in your cart!</h1>
+          <h1>...Oops you don't have any item in your cart!</h1>
         )}
       </div>
     )

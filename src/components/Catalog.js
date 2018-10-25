@@ -12,13 +12,13 @@ class Catalog extends React.Component {
         <Grid
           className="catalog-container"
           container
-          spacing={40}
+          spacing={16}
           direction="row"
           justify="center"
           alignItems="center"
         >
           {products.map((product, i) => (
-            <Grid className="catalog-product" item xs={4} key={i}>
+            <Grid className="catalog-product" item sm={4} xs={12} key={i}>
               <Product product={product} type="catalog" key={i} />
             </Grid>
           ))}

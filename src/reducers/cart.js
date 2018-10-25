@@ -6,12 +6,12 @@ function cart(state = [], action) {
       return [
         ...state,
         {
-          _id: action._id,
-          price: action.price,
-          picture: action.picture,
-          name: action.name,
-          company: action.company,
-          description: action.description,
+          _id: action.data._id,
+          price: action.data.price,
+          picture: action.data.picture,
+          name: action.data.name,
+          company: action.data.company,
+          description: action.data.description,
           index: action.index
         }
       ]

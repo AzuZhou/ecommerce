@@ -6,6 +6,7 @@ import Catalog from './Catalog'
 import Cart from './Cart'
 import { fetchProducts } from '../actions/actionCreators'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import Notifications from 'react-notify-toast'
 
 class Main extends React.Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class Main extends React.Component {
     return (
       <BrowserRouter>
         <div className="main">
+          <Notifications options={{ top: '140px' }} />
           {loading ? (
             <CircularProgress className="loader" color="secondary" />
           ) : (

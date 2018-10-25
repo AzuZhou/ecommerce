@@ -2,23 +2,21 @@ import React from 'react'
 import { addToCart, deleteProduct } from '../actions/actionCreators'
 import { connect } from 'react-redux'
 import Button from '@material-ui/core/Button'
+import { notify } from 'react-notify-toast'
+
+function handleNotifications() {
+  notify.show('Item added successfully!', 'success', 2000)
+}
 
 class Product extends React.Component {
   render() {
     const addBtn = (
       <Button
+        className="addBtn"
         variant="contained"
         color="secondary"
         onClick={() =>
-          this.props.addProduct(
-            this.props.product._id,
-            this.props.product.price,
-            this.props.product.picture,
-            this.props.product.name,
-            this.props.product.company,
-            this.props.product.description,
-            this.props.index
-          )
+          this.props.addProduct(this.props.product, this.props.index) && handleNotifications()
         }
       >
         <img
@@ -69,8 +67,7 @@ class Product extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  addProduct: (_id, price, picture, name, company, description, index) =>
-    dispatch(addToCart(_id, price, picture, name, company, description, index)),
+  addProduct: (data, index) => dispatch(addToCart(data, index)),
   deleteProduct: index => dispatch(deleteProduct(index))
 })
 

@@ -10,16 +10,10 @@ export function fetchProducts() {
   }
 }
 
-export function addToCart(_id, price, picture, name, company, description, index) {
-  console.log(index)
+export function addToCart(data, index) {
   return {
     type: ADD_TO_CART,
-    _id,
-    price,
-    picture,
-    name,
-    company,
-    description,
+    data,
     index
   }
 }
