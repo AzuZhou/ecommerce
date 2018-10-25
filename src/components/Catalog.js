@@ -18,7 +18,7 @@ class Catalog extends React.Component {
           alignItems="center"
         >
           {products.map((product, i) => (
-            <Grid className="catalog-product" item sm={4} xs={12} key={i}>
+            <Grid className="catalog-product" item md={4} sm={6} xs={12} key={i}>
               <Product product={product} type="catalog" key={i} />
             </Grid>
           ))}
